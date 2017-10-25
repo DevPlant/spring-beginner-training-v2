@@ -1,0 +1,3 @@
+sanitizer.inFile: classpath:book.csv
+sanitizer.bookOutFile: '/tmp/books.csv'
+sanitizer.authorOutFile: '/tmp/authors.csv'

@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:spring-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: spring.devplant@gmail.com
+    password: lwsuqxggwonpiwfx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            thrust: smtp.gmail.com
+          starttls:
+            required: true
+            enabled: true

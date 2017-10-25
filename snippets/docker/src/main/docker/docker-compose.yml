@@ -1,0 +1,8 @@
+version: '2'
+services:
+
+  docker-app:
+    image: devplant/docker-snippet-app
+    ports:
+      - 18080:8080
+

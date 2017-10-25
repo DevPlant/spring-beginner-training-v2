@@ -1,0 +1,11 @@
+custom:
+  props:
+    a-list: ["A","Simple","List"]
+    a-message: "you SUPER!"
+    nested:
+    - name: Timo
+      id: 1
+    - name: Radu
+      id: 2
+
+direct.property: 'Hello World'

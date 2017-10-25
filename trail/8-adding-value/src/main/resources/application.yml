@@ -1,0 +1,38 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: spring.devplant@gmail.com
+    password: lwsuqxggwonpiwfx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            thrust: smtp.gmail.com
+          starttls:
+            required: true
+            enabled: true
+  profiles:
+    active: library-data-import,admin-users,swagger,email-notifications
+  h2:
+    console:
+      enabled: true
+      path: '/h2-console'
+  datasource:
+    url: jdbc:h2:mem:spring-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+logging:
+  level.org.springframework.security: debug
+library:
+  data:
+    book-data-file: 'classpath:books.csv'
+    author-data-file: 'classpath:authors.csv'
+
+
+spring.mail.scheduler.persistence.enabled: false
+spring.mail.scheduler.persistence.redis.embedded: false
+spring.mail.scheduler.persistence.redis.enabled: false

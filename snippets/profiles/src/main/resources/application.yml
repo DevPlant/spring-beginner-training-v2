@@ -1,0 +1,5 @@
+
+app.profile.message: 'Hello Profiles'
+spring:
+  profiles:
+    active: "dev"
