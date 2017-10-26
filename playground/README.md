@@ -83,7 +83,7 @@ In my other sample from snippets/jpa we simply use a command-line-runner, no HTT
 
 ### Part 1, Security ( we'll push testing to the afternoon so we can test both with and without security )
 
-Part 1, be amazed an win 100 Lei ( If you know what happens ) !
+Part 1, be amazed an win an awesome prize!
 
 After, demo we're gonna need these snippets ( so you don't have to type it )
 
