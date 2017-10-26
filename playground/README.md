@@ -14,7 +14,7 @@
 		</dependency>
 ```
 
-### Add to application.yml for h2-console support
+### Replace contents of application.yml in src/main/resources for h2-console support
 
 ```
 spring:
