@@ -47,7 +47,6 @@ This has to do with a relativly new property `spring.jpa.open-in-view: false` wh
 
 In my other sample from snippets/jpa we simply use a command-line-runner, no HTTP Request/Response!
 
-#### 3. Issue Regarding
 
 ### Day 2.
 
