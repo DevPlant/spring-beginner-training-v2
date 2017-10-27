@@ -21,6 +21,11 @@ devplant:
   init:
     accounts:
     - username: timo
-      password: safepassword
+      password: timo
+      roles: [ROLE_USER]
     - username: admin
-      password: adminssecret
+      password: admin
+      roles: [ROLE_USER, ROLE_ADMIN]
+    - username: gigi
+      password: gigi
+      roles: [ROLE_USER, ROLE_ADMIN, ROLE_SUPER_ADMIN]

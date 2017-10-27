@@ -12,11 +12,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
 
 
     @Override
@@ -34,17 +34,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Disable Form Login
         httpSecurity.formLogin();
         //Disable CSRF ( just so you can test your Calls! )
-        httpSecurity.csrf().disable();
+        httpSecurity.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
         // Custom Config follows ! we'll write this
-        String[] API_PATHS = {"/book/**", "/author/**", "/*"};
+        String[] API_PATHS = {"/book/**", "/author/**", "/*",};
+        String[] ACCOUNT_PATHS = {"/account/**"};
+
+        httpSecurity.authorizeRequests().antMatchers(ACCOUNT_PATHS).permitAll();
+
         httpSecurity.authorizeRequests().antMatchers(
                 HttpMethod.GET, API_PATHS).authenticated()
-                .anyRequest().hasAnyRole("ADMIN", "USER", "SUPER_ADMIN");
+                .anyRequest().hasAnyRole("ADMIN", "USER");
 
         httpSecurity.authorizeRequests().antMatchers(
                 HttpMethod.POST, API_PATHS).authenticated()
-                .anyRequest().hasAnyRole("ADMIN", "SUPER_ADMIN");
+                .anyRequest().hasAnyRole("ADMIN");
 
         httpSecurity.authorizeRequests().antMatchers(
                 HttpMethod.DELETE, API_PATHS).authenticated()
@@ -54,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -69,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
-                .authoritiesByUsernameQuery("select username,'ROLE_USER' from accounts where username = ?")
+                .authoritiesByUsernameQuery("select account_username, roles from account_roles where account_username = ?")
                 .usersByUsernameQuery("select username,password,enabled from accounts where username = ?");
     }
 }
