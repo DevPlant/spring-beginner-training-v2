@@ -15,6 +15,7 @@
         <module>beans</module>
         <module>caching</module>
         <module>docker</module>
+        <module>filter</module>
         <module>jdbc</module>
         <module>jpa</module>
         <module>method-security</module>
@@ -25,6 +26,7 @@
         <module>security</module>
         <module>testing</module>
         <module>usefull</module>
+        <module>arewesecureyeti</module>
     </modules>
 
 </project>
