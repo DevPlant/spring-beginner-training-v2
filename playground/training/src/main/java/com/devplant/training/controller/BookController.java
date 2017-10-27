@@ -1,7 +1,6 @@
 package com.devplant.training.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,9 +52,10 @@ public class BookController {
 
         List<Book> allBooks = bookRepo.findAll();
 
-        return allBooks.stream()
-                .filter(book -> book.getAuthor().getName().equals(authorName))
-                .collect(Collectors.toList());
+//        return allBooks.stream()
+//                .filter(book -> book.getAuthor().getName().equals(authorName))
+//                .collect(Collectors.toList());
+        return allBooks;
     }
 
 
