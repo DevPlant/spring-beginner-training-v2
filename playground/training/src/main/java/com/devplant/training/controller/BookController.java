@@ -1,8 +1,10 @@
 package com.devplant.training.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devplant.training.entity.Book;
-import com.devplant.training.exceptions.ObjectNotFoundException;
 import com.devplant.training.repo.AuthorRepo;
 import com.devplant.training.repo.BookRepo;
 
@@ -38,6 +39,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public void deleteBook(@PathVariable("id") long id) {
         bookRepo.delete(id);
     }
@@ -52,18 +54,15 @@ public class BookController {
 
         List<Book> allBooks = bookRepo.findAll();
 
-//        return allBooks.stream()
-//                .filter(book -> book.getAuthor().getName().equals(authorName))
-//                .collect(Collectors.toList());
-        return allBooks;
+        return allBooks.stream()
+                .filter(book -> book.getAuthor().getName().equals(authorName))
+                .collect(Collectors.toList());
     }
 
 
     @GetMapping("/author-books")
     public List<Book> book(@RequestParam("author") String author) {
-        return authorRepo.findByName(author).orElseThrow(()->
-                new ObjectNotFoundException(
-                        "Author: " + author + " does not exist")).getBooks();
+        return authorRepo.findByName(author).get().getBooks();
     }
 
     @GetMapping("/by-author/v2")

@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
@@ -40,21 +39,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         String[] API_PATHS = {"/book/**", "/author/**", "/*"};
         httpSecurity.authorizeRequests().antMatchers(
                 HttpMethod.GET, API_PATHS).authenticated()
-                .anyRequest().hasAnyRole("ADMIN", "USER", "SUPER_ADMIN");
+                .anyRequest().hasAnyRole("ADMIN", "USER");
 
         httpSecurity.authorizeRequests().antMatchers(
                 HttpMethod.POST, API_PATHS).authenticated()
-                .anyRequest().hasAnyRole("ADMIN", "SUPER_ADMIN");
+                .anyRequest().hasAnyRole("ADMIN");
 
         httpSecurity.authorizeRequests().antMatchers(
                 HttpMethod.DELETE, API_PATHS).authenticated()
-                .anyRequest().hasRole("ADMIN");
+                .anyRequest().hasAnyRole("ADMIN");
 
 
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -65,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         // Tell Spring to Use in-memmory user database with 2 pre-set users,
         // since we don't have a User Entity/Table yet!
+
 
         auth.jdbcAuthentication()
                 .dataSource(dataSource)

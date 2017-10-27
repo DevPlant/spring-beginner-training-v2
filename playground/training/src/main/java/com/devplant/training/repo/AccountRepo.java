@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.devplant.training.entity.Account;
 
-public interface UserRepo
+public interface AccountRepo
         extends JpaRepository<Account, String> {
 }

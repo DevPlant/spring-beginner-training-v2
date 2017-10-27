@@ -21,6 +21,8 @@ devplant:
   init:
     accounts:
     - username: timo
-      password: safepassword
+      password: timo
     - username: admin
-      password: adminssecret
+      password: admin
+    - username: gigi
+      password: gigi

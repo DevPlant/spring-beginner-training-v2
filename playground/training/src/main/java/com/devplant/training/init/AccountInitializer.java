@@ -6,16 +6,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.devplant.training.proprties.InitialAccountProperties;
-import com.devplant.training.repo.UserRepo;
+import com.devplant.training.repo.AccountRepo;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class UserInitializer implements CommandLineRunner {
+public class AccountInitializer implements CommandLineRunner {
 
     @Autowired
-    private UserRepo userRepo;
+    private AccountRepo accountRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -33,8 +33,8 @@ public class UserInitializer implements CommandLineRunner {
                     account.setPassword(passwordEncoder.encode(
                             account.getPassword()
                     ));
-                    log.info("Creating account: {}", account);
-                    userRepo.save(account);
+                    log.info("Creating service: {}", account);
+                    accountRepo.save(account);
                 }
         );
     }

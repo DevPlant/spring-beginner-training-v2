@@ -164,3 +164,8 @@ Add to pom.xml!
 
     }
 ```
+
+
+#### Running The UI
+
+`ng serve --proxy-config proxy.conf.json`
