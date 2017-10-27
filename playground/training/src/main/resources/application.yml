@@ -13,3 +13,14 @@ spring:
     driverClassName: org.h2.Driver
 
 spring.jpa.open-in-view: false
+
+#logging.level.org.springframework.security: debug
+
+
+devplant:
+  init:
+    accounts:
+    - username: timo
+      password: safepassword
+    - username: admin
+      password: adminssecret

@@ -1,5 +1,6 @@
 package com.devplant.training.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,10 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devplant.training.entity.Author;
@@ -60,17 +66,22 @@ public class AuthorController {
         return authorRepo.findAll();
     }
 
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @CacheEvict(value = "single-author", key = "#author.id")
     @PostMapping(consumes = "application/json")
-    public Author addOrUpdateAuthor(@RequestBody Author author) {
-        log.info("Saving Author ...");
+    public Author addOrUpdateAuthor(@RequestBody Author author, Principal principal) {
+        log.info("Current principal -> " + principal.getName());
         return authorRepo.save(author);
     }
 
     @GetMapping("/{authorId}")
     @Cacheable(value = "single-author", key = "#authorId")
     public Author findOne(@PathVariable("authorId") long authorId) {
-        log.info("Getting author by id: " + authorId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        log.info("Getting author by id: " + authorId + " requested by: " + authentication.getName() +
+                authentication.getAuthorities());
         return Optional.ofNullable(authorRepo.findOne(authorId)).orElseThrow(() ->
                 new ObjectNotFoundException(
                         "Author: " + authorId + " does not exist"));
@@ -78,6 +89,7 @@ public class AuthorController {
     }
 
     @DeleteMapping("/{authorId}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @CacheEvict(value = "single-author", key = "#id")
     public void deleteById(@PathVariable("authorId") long id) {
         log.info("Deleting author : " + id);
