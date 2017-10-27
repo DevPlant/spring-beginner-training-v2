@@ -42,7 +42,8 @@ public class JpaService {
     public void findAllNoTransaction() {
 
         try {
-            trainerRepository.findAll().forEach(t -> log.info(t.getName() + " trains " + t.getStudents()));
+            trainerRepository.findAll().forEach(trainer ->
+                    log.info(trainer.getName() + " trains " + trainer.getStudents()));
         } catch (LazyInitializationException e) {
             log.error("You can't do this without a transaction");
         }
@@ -50,7 +51,8 @@ public class JpaService {
 
     @Transactional
     public void findAllTransaction() {
-        trainerRepository.findAll().forEach(t -> log.info(t.getName() + " trains " + t.getStudents()));
+        trainerRepository.findAll().forEach(trainer
+                -> log.info(trainer.getName() + " trains " + trainer.getStudents()));
     }
 
 
@@ -89,7 +91,6 @@ public class JpaService {
             throw new RuntimeException("Fail");
         }
         trainerRepository.deleteAll();
-
     }
 
     public void deleteAllWithoutTransactionFail() {
