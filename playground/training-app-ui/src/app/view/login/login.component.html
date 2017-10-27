@@ -1,0 +1,29 @@
+<br><br>
+<mat-card class="viewport-size mat-typography">
+  <form class="example-form" (submit)="doLogin()">
+    <mat-card-title>Training App Login</mat-card-title>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center stretch">
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Username" [(ngModel)]="username" #name="ngModel" name="username">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" type="password" [(ngModel)]="password" #name="ngModel" name="password">
+      </mat-form-field>
+
+    </mat-card-content>
+    <h3 *ngIf="error" style="color:darkred;">Invalid Credentials</h3>
+    <p>Don't have an account yet? <a color="" mat-button
+                                     routerLink="/register">Register</a></p>
+
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary">
+        Login
+      </button>
+
+    </mat-card-actions>
+  </form>
+
+</mat-card>

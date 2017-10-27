@@ -1,0 +1,73 @@
+<mat-toolbar color="primary" class="mat-typography app-navbar">
+
+  <h3 routerLink="home" class="no-select">Training App UI</h3>
+  <span class="spacer"></span>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon mat-list-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="change-password">
+      Change Password
+    </button>
+    <button mat-menu-item (click)="logout()">
+      Logout
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<mat-card>
+  <mat-tab-group>
+
+    <mat-tab label="Books">
+
+      <button mat-mini-fab color="primary" (click)="editBook(null)"
+              style="float: right;    margin-top: 10px;    margin-right: 28px;" >
+        <mat-icon aria-label="Add Book">add</mat-icon>
+      </button>
+      <br>
+      <mat-list dense>
+        <h3 mat-subheader>Books</h3>
+        <mat-list-item *ngFor="let book of books">
+          <mat-icon mat-list-icon>library_books</mat-icon>
+          <h4 mat-line>{{book.title}}</h4>
+          <p mat-line>Written by: {{book.author? book.author.name : 'unknown'}}, published in {{book.year}}</p>
+          <p mat-line>{{book.details && book.details.length > 256 ? book.details.substr(0,256)+' ...' :
+            book.details}}</p>
+          <button mat-icon-button color="primary" *ngIf="isAdmin" (click)="editBook(book)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" *ngIf="isAdmin" (click)="deleteBook(book.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+
+    </mat-tab>
+
+    <mat-tab label="Authors">
+
+      <button mat-mini-fab color="primary" (click)="editAuthor(null)"
+              style="float: right;    margin-top: 10px;    margin-right: 28px;">
+        <mat-icon aria-label="Add Author">add</mat-icon>
+      </button>
+      <br>
+      <mat-list dense>
+        <h3 mat-subheader>Authors</h3>
+        <mat-list-item *ngFor="let author of authors">
+          <mat-icon mat-list-icon>person</mat-icon>
+          <h4 mat-line>{{author.name}}</h4>
+          <p mat-line>{{author.bio && author.bio.length > 256 ? author.bio.substr(0,256)+' ...' : author.bio}}</p>
+          <button mat-icon-button color="primary" *ngIf="isAdmin" (click)="editAuthor(author)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" *ngIf="isAdmin" (click)="deleteAuthor(author.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+
+    </mat-tab>
+  </mat-tab-group>
+
+</mat-card>

@@ -1,0 +1,27 @@
+<section class="mat-typography">
+  <form name="form" (ngSubmit)="saveAuthor()" #addEditAuthor="ngForm" autocomplete="off"
+        role="presentation">
+    <h2 mat-dialog-title>{{author.id > 0 ? 'Edit Author' : 'Add Author' }} </h2>
+    <mat-dialog-content>
+
+      <mat-form-field class="form-full-width">
+        <input matInput placeholder="Name"
+               #name="ngModel" [(ngModel)]="author.name"
+               name="name">
+      </mat-form-field>
+
+      <mat-form-field class="form-full-width">
+        <textarea matInput matTextareaAutosize placeholder="Bio" #name="ngModel"
+               [(ngModel)]="author.bio"
+                  name="bio"></textarea>
+      </mat-form-field>
+
+      <br>
+      <h3 *ngIf="error" style="color:darkred;">Author already exists!</h3>
+    </mat-dialog-content>
+    <mat-dialog-actions class="actions">
+      <button mat-button mat-dialog-close>Close</button>
+      <button color="primary" mat-raised-button >Save</button>
+    </mat-dialog-actions>
+  </form>
+</section>

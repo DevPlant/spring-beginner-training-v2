@@ -1,0 +1,45 @@
+<section class="mat-typography">
+  <form name="form" (ngSubmit)="saveBook()" #addEditAuthor="ngForm" autocomplete="off"
+        role="presentation">
+    <h2 mat-dialog-title>{{book.id > 0 ? 'Edit Book' : 'Add Book' }} </h2>
+    <mat-dialog-content>
+
+      <mat-form-field class="form-full-width">
+        <input matInput placeholder="Title"
+               #name="ngModel" [(ngModel)]="book.title"
+               name="title">
+      </mat-form-field>
+
+
+      <mat-form-field class="form-full-width">
+        <input matInput placeholder="Year" #name="ngModel"
+               [(ngModel)]="book.year" type="number"
+               name="year">
+      </mat-form-field>
+
+      <mat-form-field class="form-full-width">
+        <textarea matInput matTextareaAutosize="" placeholder="Details"
+                  #name="ngModel" [(ngModel)]="book.details"
+                  name="details"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="form-full-width">
+        <mat-select placeholder="Author" [(ngModel)]="book.author" name="author">
+          <mat-option [value]="null">
+            --
+          </mat-option>
+          <mat-option *ngFor="let author of authors" [value]="author">
+            {{ author.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <h3 *ngIf="error" style="color:darkred;">Failed to create book!</h3>
+    </mat-dialog-content>
+    <mat-dialog-actions class="actions">
+      <button mat-button mat-dialog-close>Close</button>
+      <button color="primary" mat-raised-button>Save</button>
+    </mat-dialog-actions>
+  </form>
+</section>

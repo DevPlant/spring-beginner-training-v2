@@ -1,0 +1,23 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.no-select {
+  outline: none;
+  cursor: pointer;
+}
+
+.view-container {
+  z-index: 1;
+  display: block;
+  height: 100%;
+  overflow: auto;
+}
+
+
+.app-navbar{
+  position: relative;
+  z-index: 10;
+}
+
+
