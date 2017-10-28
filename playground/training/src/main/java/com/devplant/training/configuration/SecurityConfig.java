@@ -19,24 +19,29 @@ import com.devplant.training.repo.AccountRepo;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        // for h2 console IFRAME
+        httpSecurity.headers().frameOptions().disable();
+
+        // Enable/Disable Http Basic
+        // httpSecurity.httpBasic();
+        // Enable/Disable Form Login
+        httpSecurity.formLogin();
+        // Enable/Disable CSRF ( just so you can test your Calls! )
+        httpSecurity.csrf().disable();
+
+        configureAppSpecificHttpSecurityPaths(httpSecurity);
+
+    }
+
+    public static void configureAppSpecificHttpSecurityPaths(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 // allow everything on swagger, the other ones are just resources swagger loads, nothing 'dangerous here'
                 .antMatchers(
                         "/h2-console/**",
                         "/swagger-ui.html", "/webjars/**",
                         "/swagger-resources/**", "/v2/**").permitAll();
-
-        httpSecurity.headers().frameOptions().disable();
-        // Enable Http Basic
-        // httpSecurity.httpBasic();
-        // Disable Form Login
-        httpSecurity.formLogin();
-        //Disable CSRF ( just so you can test your Calls! )
-        httpSecurity.csrf().disable();
-
         // Custom Config follows ! we'll write this
         String[] ACCOUNT_PATHS = {"/account/**"};
         String[] ACCOUNT_REGISTER_PATH = {"/account/register"};
@@ -57,8 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.authorizeRequests().antMatchers(
                 HttpMethod.DELETE, API_PATHS).authenticated()
                 .anyRequest().hasAnyRole("ADMIN");
-
-
     }
 
     @Bean
@@ -68,9 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
-
-    @Autowired
-    private AccountRepo accountRepo;
 
 
     @Autowired

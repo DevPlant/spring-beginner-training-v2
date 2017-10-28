@@ -17,6 +17,7 @@ spring.jpa.open-in-view: false
 #logging.level.org.springframework.security: debug
 
 
+
 devplant:
   init:
     accounts:
