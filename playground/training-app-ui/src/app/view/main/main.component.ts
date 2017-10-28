@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
     this.http.get("/account/me").subscribe(me => {
       try {
         const roles: string[] = me.json().roles;
-        if (roles.indexOf("ROLE_ADMIN") > 0) {
+        if (roles.indexOf("ROLE_ADMIN") >= 0) {
           this.isAdmin = true;
         } else {
           this.isAdmin = false;
