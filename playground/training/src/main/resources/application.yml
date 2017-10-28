@@ -22,7 +22,10 @@ devplant:
     accounts:
     - username: timo
       password: timo
+      roles: [ROLE_USER]
     - username: admin
       password: admin
+      roles: [ROLE_ADMIN, ROLE_USER]
     - username: gigi
       password: gigi
+      roles: [ROLE_USER]

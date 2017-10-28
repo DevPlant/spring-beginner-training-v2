@@ -6,4 +6,5 @@ import com.devplant.training.entity.Account;
 
 public interface AccountRepo
         extends JpaRepository<Account, String> {
+
 }
