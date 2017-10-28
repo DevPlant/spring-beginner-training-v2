@@ -22,7 +22,7 @@
     <mat-tab label="Books">
 
       <button mat-mini-fab color="primary" (click)="editBook(null)"
-              style="float: right;    margin-top: 10px;    margin-right: 28px;" >
+              style="float: right;    margin-top: 10px;    margin-right: 28px;" *ngIf="isAdmin" >
         <mat-icon aria-label="Add Book">add</mat-icon>
       </button>
       <br>
@@ -47,7 +47,7 @@
 
     <mat-tab label="Authors">
 
-      <button mat-mini-fab color="primary" (click)="editAuthor(null)"
+      <button mat-mini-fab color="primary" (click)="editAuthor(null)" *ngIf="isAdmin"
               style="float: right;    margin-top: 10px;    margin-right: 28px;">
         <mat-icon aria-label="Add Author">add</mat-icon>
       </button>

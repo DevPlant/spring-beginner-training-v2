@@ -168,4 +168,11 @@ Add to pom.xml!
 
 #### Running The UI
 
+
+ You need NPM and NG installed globally
+
+
+  for osx install npm with `brew install npm`
+
+  for ng run `npm install -g ng`
 `ng serve --proxy-config proxy.conf.json`
