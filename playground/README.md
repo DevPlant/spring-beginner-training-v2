@@ -143,6 +143,15 @@ Add to pom.xml!
             <version>3.8.0</version>
             <scope>test</scope>
         </dependency>
+
+
+      <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
 ```
 
 #### Sample Test for MVC Testing
