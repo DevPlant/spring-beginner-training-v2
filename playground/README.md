@@ -187,3 +187,14 @@ Add to pom.xml!
 then run `npm install` in the training app ui folder
 
 `ng serve --proxy-config proxy.conf.json`
+
+
+#### CSV Parser dependency for weasy CSV parsing and data importing
+
+```
+      <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.5</version>
+        </dependency>
+```
