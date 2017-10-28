@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import com.devplant.training.entity.Account;
 import com.devplant.training.exceptions.AccountAlreadyExistsException;
@@ -19,6 +20,7 @@ import com.devplant.training.model.ChangePasswordRequest;
 import com.devplant.training.repo.AccountRepo;
 
 @Service
+@Validated
 public class AccountService {
 
     @Autowired

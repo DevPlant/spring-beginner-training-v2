@@ -1,7 +1,5 @@
 package com.devplant.training.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,12 +25,12 @@ public class AccountController {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody  @Valid AccountRegistrationRequest request){
+    public void register(@RequestBody  AccountRegistrationRequest request){
         accountService.registerAccount(request);
     }
 
     @PostMapping("/change-password")
-    public void changePassword(@RequestBody @Valid ChangePasswordRequest request){
+    public void changePassword(@RequestBody  ChangePasswordRequest request){
         accountService.changePassword(request);
     }
 
