@@ -174,7 +174,7 @@ Add to pom.xml!
 
   for osx install npm with `brew install npm`
 
-  for ng run `npm install -g angular-cli`
+  for ng run `npm install -g @angular/cli`
 then run `npm install` in the training app ui folder
 
 `ng serve --proxy-config proxy.conf.json`
